@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (declaracaoP) {
             // Injeta a data no texto base do HTML
             declaracaoP.innerHTML = declaracaoP.innerHTML
-                .replace('Desde o dia,', `Desde o dia **${DATA_INICIO_FORMATADA}**,`)
-                .replace('Você é a minha paz', `**${NOME_DA_PARCEIRA}**, você é a minha paz`);
+                .replace('Desde o dia,', `Desde o dia ${DATA_INICIO_FORMATADA},`)
+                .replace('Você é a minha paz', `${NOME_DA_PARCEIRA}, você é a minha paz`);
         }
 
         // Legenda da Foto (Nome dela)

@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const fadeElements = document.querySelectorAll('.fade-element');
     const options = {
         root: null, 
-        rootMargin: '0px',
-        threshold: 0.1
+        rootMargin: '5px',
+        threshold: 0.3
     };
 
     const observer = new IntersectionObserver((entries, observer) => {

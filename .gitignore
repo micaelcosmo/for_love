@@ -4,4 +4,3 @@ config.js
 # Outras exclusões comuns
 node_modules/
 .vscode/
-img/img*

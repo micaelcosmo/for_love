@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. VERIFICA SE O ARQUIVO DE CONFIGURAÇÃO FOI CARREGADO
     if (typeof APP_CONFIG !== 'undefined') {
-        // const { NOME_DO_PARCEIRO, NOME_DA_PARCEIRA, DATA_INICIO_FORMATADA } = APP_CONFIG;
-
+        
         // CORREÇÃO APLICADA AQUI: USAR document.title
         document.title = `Para a minha Ju`;
 
@@ -19,7 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Legenda da Foto (Nome dela)
-        document.getElementById('figcaption-ju').textContent = `Aquele sorriso que ilumina meu mundo, minha Ju.`;
+        const figcaptionJu = document.getElementById('figcaption-ju');
+        if (figcaptionJu) {
+            figcaptionJu.textContent = `Aquele sorriso que ilumina meu mundo, minha Ju.`;
+        }
 
         // Assinatura Final (Seu Nome)
         document.getElementById('assinatura-final').textContent = `Seu Kaell`;
@@ -46,4 +48,37 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(element);
     });
 
+    // -------------------------------------------
+    // 3. CONTROLE DE ÁUDIO DE FUNDO (NOVA SEÇÃO)
+    // -------------------------------------------
+    const music = document.getElementById('background-music');
+
+    if (music) {
+        // 1. Tenta dar play no modo mudo (necessário para Autoplay em mobile/Chrome)
+        music.muted = true;
+        music.play().catch(error => {
+            // console.warn("Autoplay falhou, esperando interação...", error);
+        });
+
+        // Função para desmutar e tentar tocar (após a primeira interação)
+        function enableAudio() {
+            // Só tenta se o áudio estiver pausado ou mudo
+            if (music.paused || music.muted) { 
+                music.muted = false;
+                music.play().catch(error => {
+                    // Trata o erro de permissão (mas a interação já ocorreu)
+                });
+            }
+            
+            // Remove os listeners após a primeira interação bem-sucedida ou tentativa
+            document.removeEventListener('click', enableAudio);
+            document.removeEventListener('scroll', enableAudio);
+            document.removeEventListener('touchstart', enableAudio); 
+        }
+
+        // Adiciona listeners para desmutar o áudio na primeira interação do usuário
+        document.addEventListener('click', enableAudio);
+        document.addEventListener('scroll', enableAudio);
+        document.addEventListener('touchstart', enableAudio); 
+    }
 });

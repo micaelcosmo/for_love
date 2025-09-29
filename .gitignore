@@ -1,0 +1,6 @@
+# Excluir dados de configuração local
+config.js
+
+# Outras exclusões comuns
+node_modules/
+.vscode/

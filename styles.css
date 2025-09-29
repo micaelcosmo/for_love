@@ -1,0 +1,171 @@
+/* RESET BÁSICO E CONFIGURAÇÃO DE FONTES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #444; /* Cor de texto mais suave */
+    background-color: #fcf8f7; /* Creme/rosa muito suave */
+    overflow-x: hidden; /* Evita barra de rolagem horizontal */
+}
+
+/* ------------------------------------------- */
+/* ESTILO PRINCIPAL: CONTAINER E SEÇÕES */
+/* ------------------------------------------- */
+
+/* Configuração para o EFEITO SCROLL-SNAP */
+.container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory; /* Força o "grude" em cada seção */
+}
+
+.section {
+    scroll-snap-align: start; /* Alinha o início da seção ao topo da tela */
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    line-height: 1.5;
+    background-color: var(--bg-color, #fff);
+}
+
+/* Cores de fundo diferentes para transição visual */
+#inicio { background-color: #fef0e7; }
+#declaracao { background-color: #fcf8f7; }
+#fotos { background-color: #e6f7ff; } /* Azul suave */
+#motivos { background-color: #fcf8f7; }
+#final { background-color: #fef0e7; }
+
+/* ------------------------------------------- */
+/* TIPOGRAFIA E ELEMENTOS */
+/* ------------------------------------------- */
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem; /* Grande para mobile */
+    color: #cc6688; /* Tom de rosa/vinho */
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #a04060;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #777;
+}
+
+.content-box {
+    max-width: 90%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 20px;
+    font-size: 0.9rem;
+    color: #a04060;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Galeria (Mobile-First) */
+.gallery {
+    display: flex;
+    flex-direction: column; /* Pilha vertical no mobile */
+    gap: 20px;
+    max-width: 90%;
+}
+
+.gallery figure img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+figcaption {
+    margin-top: 5px;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Lista de Motivos */
+.reasons-list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.reasons-list li {
+    margin: 10px 0;
+    color: #555;
+}
+
+/* Finalização */
+.final-title {
+    font-size: 3rem;
+}
+
+.signature {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #a04060;
+}
+
+.heart {
+    font-size: 3rem;
+    margin-top: 30px;
+    color: #d94a73;
+}
+
+/* Animação de pulso para o coração */
+.pulse {
+    animation: pulse-animation 1.5s infinite;
+}
+
+@keyframes pulse-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* ------------------------------------------- */
+/* EFEITOS DE REVELAÇÃO (JS CONTROLADO) */
+/* ------------------------------------------- */
+
+/* Estado INICIAL dos elementos antes de aparecerem (escondido/transparente) */
+.fade-element {
+    opacity: 0;
+    transform: translateY(20px); /* Começa um pouco abaixo */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Estado FINAL dos elementos (visível/posição normal) */
+.fade-element.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}

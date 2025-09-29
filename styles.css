@@ -46,6 +46,11 @@ body {
 #declaracao { background-color: #fcf8f7; }
 #fotos { background-color: #e6f7ff; } 
 #motivos { background-color: #fcf8f7; }
+/* NOVA SEÇÃO DE IMAGEM FINAL */
+#final_img { 
+    background-color: #a04060; /* Cor escura ou personalizada para dar destaque */
+    padding: 0; /* Remove padding para a imagem poder ocupar mais espaço */
+}
 #final { background-color: #fef0e7; }
 
 /* ------------------------------------------- */
@@ -131,6 +136,22 @@ figcaption {
     font-style: italic;
     font-size: 0.9rem;
     color: #666;
+}
+
+/* ------------------------------------------- */
+/* IMAGEM DE FINALIZAÇÃO (NOVA SEÇÃO) */
+/* ------------------------------------------- */
+
+#final_img img {
+    /* Ocupa a altura e largura máxima da seção */
+    max-width: 100%; 
+    max-height: 100%;
+    
+    /* Faz a imagem se ajustar na tela sem ser cortada, centralizando-a */
+    object-fit: contain; 
+    
+    /* Garante que o fundo da imagem seja preto, caso ocupe menos de 100% da área */
+    background-color: #a04060; 
 }
 
 /* ------------------------------------------- */

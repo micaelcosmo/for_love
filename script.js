@@ -1,11 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. INJEÇÃO DE DADOS (CONFIG.JS)
     if (typeof APP_CONFIG !== 'undefined') {
-        // Esta parte usa valores fixos ('Ju', '1 de Janeiro de 2025', 'Kaell')
-        // Se você tiver o arquivo config.js com as variáveis NOME_DA_PARCEIRA, etc.,
-        // você pode remover os comentários da linha abaixo e usar as variáveis dinâmicas.
-        // const { NOME_DO_PARCEIRO, NOME_DA_PARCEIRA, DATA_INICIO_FORMATADA } = APP_CONFIG;
-
         document.title = `Para a minha Ju`;
 
         // Subtítulo
@@ -28,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .replace('Você é a minha paz', `Ju, você é a minha paz`);
         }
 
-        // Legenda da Foto (Nome dela) - Usando 'querySelectorAll' para atingir todas as ocorrências de um mesmo ID
+        // Legenda da Foto (Nome dela)
         document.querySelectorAll('#figcaption-ju').forEach(el => {
             el.textContent = `Aquele sorriso que ilumina meu mundo, minha Ju.`;
         });
@@ -62,44 +57,105 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------
-    // 3. CONTROLE DE ÁUDIO DE FUNDO (SOLUÇÃO MOBILE ROBUSTA)
+    // 3. INICIALIZAÇÃO DO CARROSSEL (SWIPER)
+    // -------------------------------------------
+    // -------------------------------------------
+    // 3.0 GERAÇÃO AUTOMÁTICA DE SLIDES (NOVO)
+    // -------------------------------------------
+    const swiperWrapper = document.getElementById('swiper-wrapper-dinamico');
+    const totalImagens = 39; // Quantidade de fotos que você tem
+
+    if (swiperWrapper) {
+        for (let i = 1; i <= totalImagens; i++) {
+            // Cria a div do slide
+            const slideDiv = document.createElement('div');
+            slideDiv.classList.add('swiper-slide');
+
+            // Formata o número para ter zero à esquerda (01, 02... 10)
+            // Se suas imagens renomeadas pelo Python ficaram img1.jpg, tire o padStart
+            const numeroFormatado = i.toString().padStart(2, '0'); 
+            
+            // Cria a imagem
+            const img = document.createElement('img');
+            // Caminho da imagem (ajuste a extensão se for png)
+            img.src = `img/img${numeroFormatado}.jpg`; 
+            img.alt = `Momento Especial ${i}`;
+            img.loading = "lazy"; // Importante para performance com 40 fotos
+
+            // Monta o HTML
+            slideDiv.appendChild(img);
+            swiperWrapper.appendChild(slideDiv);
+        }
+    }
+
+    // -------------------------------------------
+    // 3.1 INICIALIZAÇÃO DO CARROSSEL (SWIPER)
+    // -------------------------------------------
+    // Mantenha seu código Swiper aqui embaixo, EXATAMENTE como já estava
+    var swiper = new Swiper(".mySwiper", {
+        // ... suas configurações ...
+    });
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1, // Mobile: 1 slide por vez
+        spaceBetween: 20, // Espaço entre os slides
+        loop: true,       // Loop infinito
+        speed: 1000,      // Velocidade da transição suave
+        autoplay: {
+            delay: 3000,  // Troca a cada 3 segundos
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        // Responsividade
+        breakpoints: {
+            640: {
+                slidesPerView: 2, // Tablets pequenos
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3, // Desktop: 3 slides por vez
+                spaceBetween: 30,
+            },
+        },
+    });
+
+    // -------------------------------------------
+    // 4. CONTROLE DE ÁUDIO DE FUNDO
     // -------------------------------------------
     const music = document.getElementById('background-music');
-    let audioStarted = false; // Flag para garantir que o áudio só inicie uma vez
+    let audioStarted = false; 
 
     if (music) {
-        // Tenta dar play no modo mudo no início, por segurança e compatibilidade inicial.
         music.muted = true;
         music.play().catch(error => {
-            // Se falhar (o que é comum em mobile), não há problema. Esperamos a interação.
+            // Esperamos interação
         });
 
-        // Função para iniciar o áudio (com som) no primeiro toque/interação
         function startAudio() {
             if (!audioStarted) {
-                music.muted = false; // Tenta desmutar
+                music.muted = false; 
                 music.play().then(() => {
-                    // Sucesso: Áudio iniciou com som. Remove os listeners.
                     audioStarted = true;
-                    document.removeEventListener('click', startAudio);
-                    document.removeEventListener('touchstart', startAudio);
-                    document.removeEventListener('scroll', startAudio);
+                    removeAudioListeners();
                 }).catch(error => {
-                    // Se o navegador ainda bloquear o som (por exemplo, no iOS em alguns casos):
-                    // Tentamos tocar mudo, garantindo que pelo menos a música toque.
                     music.muted = true;
                     music.play();
                     audioStarted = true;
-                    document.removeEventListener('click', startAudio);
-                    document.removeEventListener('touchstart', startAudio);
-                    document.removeEventListener('scroll', startAudio);
+                    removeAudioListeners();
                 });
             }
         }
 
-        // Adiciona os listeners de eventos de interação mais comuns:
-        document.addEventListener('click', startAudio);      // Clique (desktop)
-        document.addEventListener('touchstart', startAudio); // Toque na tela (mobile - o mais importante)
-        document.addEventListener('scroll', startAudio);     // Rolagem
+        function removeAudioListeners() {
+            document.removeEventListener('click', startAudio);
+            document.removeEventListener('touchstart', startAudio);
+            document.removeEventListener('scroll', startAudio);
+        }
+
+        document.addEventListener('click', startAudio);      
+        document.addEventListener('touchstart', startAudio); 
+        document.addEventListener('scroll', startAudio);     
     }
 });

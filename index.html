@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para o Amor</title> 
+    <title>Lembrou? rs...</title> 
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,21 +13,24 @@
     <main class="container">
 
         <section id="inicio" class="section snap-section">
-            <h1 class="fade-element title">Olá, amor da minha vida...</h1>
-            <p id="subtitulo-ju" class="fade-element subtitle">Uma pequena coleção de lembranças e sentimentos, só para você. </p>
+            <h1 class="fade-element title">Olá...</h1>
+            <p id="subtitulo-ju" class="fade-element subtitle">Uma pequena coleção de lembranças e sentimentos para você. </p>
         </section>
-
-        <section id="declaracao" class="section snap-section">
-            <div class="content-box fade-element">
-                <h2 id="titulo-data">Onde Tudo Começou (1/1/25)</h2> 
-                <p id="texto-declaracao">Desde o dia, quando nossos caminhos se cruzaram (de novo... rs...), minha vida ganhou uma cor e um propósito que eu jamais imaginei. Você é a minha paz, a minha aventura e a pessoa que me faz querer ser melhor a cada manhã. Cada risada, cada abraço, cada olhar... tudo é um presente com você.</p>
+        
+        <section id="momentos-especiais" class="section snap-section">
+            <h2 class="fade-element">Melhores Momentos</h2>
+            
+            <div class="swiper mySwiper fade-element">
+                <div class="swiper-wrapper" id="swiper-wrapper-dinamico">
+                </div>
+                
             </div>
         </section>
 
-        <section id="fotos-galeria-1" class="section snap-section"> <h2 class="fade-element">Nossas Histórias</h2>
+        <section id="fotos-galeria-1" class="section snap-section">
             <div class="gallery">
                 <figure class="fade-element">
-                    <video src="img/img01.mp4" 
+                    <video src="img/vid01.mp4" 
                         alt="Vídeo de um momento especial"
                         autoplay 
                         loop 
@@ -35,47 +39,13 @@
                         class="video-galeria">
                         Seu navegador não suporta a tag de vídeo.
                     </video>
-                    <figcaption>O início de tudo.<br>
-                        O dia que virou nossa história. ❤️</figcaption>
                 </figure>
             </div>
         </section>
-
-        <section id="fotos-galeria-2" class="section snap-section"> <div class="gallery">
+        <section id="fotos-galeria-1" class="section snap-section">
+            <div class="gallery">
                 <figure class="fade-element">
-                    <img src="img/img02.jpg" alt="Foto de uma viagem ou evento">
-                    <figcaption id="figcaption-ju">Aquele sorriso que ilumina meu mundo,<br> minha Ju.</figcaption> 
-                </figure>
-            </div>
-        </section>
-        
-        <section id="fotos-galeria-3" class="section snap-section"> <div class="gallery">
-                <figure class="fade-element">
-                    <img src="img/img03.jpg" alt="Foto de uma viagem ou evento">
-                    <figcaption>Meu lugar favorito no mundo?<br> É sempre ao seu lado.</figcaption> 
-                </figure>
-            </div>
-        </section>
-        
-        <section id="fotos-galeria-4" class="section snap-section"> <div class="gallery">
-                <figure class="fade-element">
-                    <img src="img/img04.jpg" alt="Foto de uma viagem ou evento">
-                    <figcaption>Cada dia é uma aventura,<br> e você é a melhor parceira que eu poderia ter.</figcaption> 
-                </figure>
-            </div>
-        </section>
-        
-        <section id="fotos-galeria-5" class="section snap-section"> <div class="gallery">
-                <figure class="fade-element">
-                    <img src="img/img05.jpg" alt="Foto de uma viagem ou evento">
-                    <figcaption id="figcaption-ju">Olhando para trás, vejo a sorte que tive de te encontrar<br> (e reencontrar!).<br> Obrigado por ser a melhor esposa,<br> parceira e mãe para nossa família.</figcaption> 
-                </figure>
-            </div>
-        </section>
-        
-        <section id="fotos-galeria-6" class="section snap-section"> <div class="gallery">
-                <figure class="fade-element">
-                    <video src="img/img06.mp4" 
+                    <video src="img/vid02.mp4" 
                         alt="Vídeo de um momento especial"
                         autoplay 
                         loop 
@@ -84,47 +54,28 @@
                         class="video-galeria">
                         Seu navegador não suporta a tag de vídeo.
                     </video>
-                    <figcaption id="figcaption-ju">
-                        A melhor companhia que eu poderia ter!<br>
-                        Te amo mais a cada segundo com você.
-                    </figcaption>
                 </figure>
             </div>
         </section>
-        
-        <section id="fotos-galeria-7" class="section snap-section"> <div class="gallery">
+        <section id="fotos-galeria-1" class="section snap-section">
+            <div class="gallery">
                 <figure class="fade-element">
-                    <img src="img/img07.jpg" alt="Foto de uma viagem ou evento">
-                    <figcaption>
-                        Nosso 'para sempre' está sendo escrito a cada dia.<br>
-                        Sou grato por cada capítulo,<br> e mal posso esperar pelo que vem pela frente.<br>
-                        Você é o meu futuro favorito.
-                    </figcaption> 
+                    <video src="img/vid03.mp4" 
+                        alt="Vídeo de um momento especial"
+                        autoplay 
+                        loop 
+                        muted 
+                        playsinline
+                        class="video-galeria">
+                        Seu navegador não suporta a tag de vídeo.
+                    </video>
                 </figure>
             </div>
-        </section>
-
-        <section id="motivos" class="section snap-section">
-            <h2 class="fade-element">Por que te amo (além de milhões de razões):</h2>
-            <ul class="reasons-list">
-                <li class="fade-element">✨ Sua paciência infinita e seu coração gentil.</li>
-                <li class="fade-element">🧠 A sua inteligência e a forma como você enxerga o mundo.</li>
-                <li class="fade-element">😊 O jeito que você cuida tão bem de mim e das nossas filhas.</li>
-                <li class="fade-element">☀️ Você transforma qualquer dia comum em um dia extraordinário.</li>
-                <li class="fade-element">🎶 A sua capacidade de me fazer rir e aliviar o peso de qualquer dia. Você é a minha alegria.</li>
-                <li class="fade-element">🤝 O apoio incondicional que me dá nos meus estudos, trabalhos e nos desafios como desenvolvedor.</li>
-                <li class="fade-element">🏡 O modo leve e carinhoso com que você torna nosso lar o melhor lugar do mundo. Meu refúgio é você.</li>
-            </ul>
-        </section>
-        
-        <section id="final_img" class="section snap-section">
-            <img src="img/img08.jpg" alt="Foto de uma viagem ou evento">
         </section>
 
         <section id="final" class="section snap-section">
-            <p class="fade-element">Para o futuro que estamos construindo...</p>
-            <h1 class="fade-element title final-title">Eu te amo, hoje e sempre.</h1>
-            <p id="assinatura-final" class="fade-element signature">Seu Micael</p> 
+            <p class="fade-element">rs...</p>
+            <h1 class="fade-element title final-title">... e sempre.</h1>
             <div class="heart pulse">❤️</div>
         </section>
 
@@ -135,6 +86,8 @@
         Seu navegador não suporta áudio.
     </audio>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <script src="config.js"></script> 
     <script src="script.js"></script>
 

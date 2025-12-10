@@ -39,17 +39,20 @@ body {
     text-align: center;
     line-height: 1.5;
     background-color: var(--bg-color, #fff);
+    overflow: hidden; /* Importante para o Swiper não vazar */
 }
 
 /* Cores de fundo diferentes para transição visual */
 #inicio { background-color: #fef0e7; }
 #declaracao { background-color: #fcf8f7; }
-#fotos { background-color: #e6f7ff; } 
+#fotos-galeria-1, #fotos-galeria-2, #fotos-galeria-3 { background-color: #e6f7ff; } 
+#momentos-especiais { background-color: #fff0f5; } /* Cor nova para o carrossel */
 #motivos { background-color: #fcf8f7; }
+
 /* NOVA SEÇÃO DE IMAGEM FINAL */
 #final_img { 
-    background-color: #a04060; /* Cor escura ou personalizada para dar destaque */
-    padding: 0; /* Remove padding para a imagem poder ocupar mais espaço */
+    background-color: #a04060; 
+    padding: 0; 
 }
 #final { background-color: #fef0e7; }
 
@@ -84,24 +87,10 @@ h2 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.scroll-indicator {
-    position: absolute;
-    bottom: 20px;
-    font-size: 0.9rem;
-    color: #a04060;
-    animation: bounce 1.5s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
 /* ------------------------------------------- */
 /* GALERIA E MÍDIA (IMG/VIDEO) */
 /* ------------------------------------------- */
 
-/* Zera margens padrão da tag Figure */
 .gallery figure {
     margin: 0; 
     padding: 0;
@@ -119,15 +108,10 @@ h2 {
 .video-galeria { 
     width: 100%;
     max-height: 250px; 
-    
-    /* Para evitar o corte e mostrar a mídia inteira */
     object-fit: contain; 
-    
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    /* Fundo branco que preenche o espaço criado pelo 'contain' */
     background-color: #fff; 
-    /* Garante que a imagem se comporte como um bloco, removendo espaços abaixo */
     display: block; 
 }
 
@@ -139,18 +123,72 @@ figcaption {
 }
 
 /* ------------------------------------------- */
+/* SWIPER CAROUSEL (NOVO CSS) */
+/* ------------------------------------------- */
+
+.swiper {
+    width: 100%;
+    max-width: 1200px; /* Limita largura em telas grandes */
+    padding-bottom: 40px !important; /* Espaço para paginação */
+}
+
+.swiper-slide {
+    text-align: center;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 400px; /* Altura fixa para alinhar o carrossel */
+    object-fit: cover; /* Recorta para preencher */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #a04060 !important;
+}
+
+/* Botão CTA do Carrossel */
+.cta-container {
+    margin-top: 20px;
+    z-index: 10;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #d94a73; /* Cor rosa do tema */
+    color: white;
+    padding: 12px 25px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(217, 74, 115, 0.4);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.cta-button:hover {
+    background-color: #a04060;
+    transform: translateY(-2px);
+}
+
+/* ------------------------------------------- */
 /* IMAGEM DE FINALIZAÇÃO (NOVA SEÇÃO) */
 /* ------------------------------------------- */
 
 #final_img img {
-    /* Ocupa a altura e largura máxima da seção */
     max-width: 100%; 
     max-height: 100%;
-    
-    /* Faz a imagem se ajustar na tela sem ser cortada, centralizando-a */
     object-fit: contain; 
-    
-    /* Garante que o fundo da imagem seja preto, caso ocupe menos de 100% da área */
     background-color: #a04060; 
 }
 
@@ -188,7 +226,6 @@ figcaption {
     color: #d94a73;
 }
 
-/* Animação de pulso para o coração */
 .pulse {
     animation: pulse-animation 1.5s infinite;
 }
@@ -203,14 +240,12 @@ figcaption {
 /* EFEITOS DE REVELAÇÃO (JS CONTROLADO) */
 /* ------------------------------------------- */
 
-/* Estado INICIAL dos elementos antes de aparecerem (escondido/transparente) */
 .fade-element {
     opacity: 0;
     transform: translateY(20px); 
     transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-/* Estado FINAL dos elementos (visível/posição normal) */
 .fade-element.is-visible {
     opacity: 1;
     transform: translateY(0);
